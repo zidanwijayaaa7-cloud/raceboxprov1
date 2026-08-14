@@ -154,6 +154,37 @@ app.post('/api/admin/update-subscription', async (req, res) => {
   }
 });
 
+// ==========================================
+// 5. CEK STATUS AKUN (UNTUK APLIKASI PENGGUNA)
+// ==========================================
+app.get('/api/subscription/status', async (req, res) => {
+  try {
+    const userId = req.headers['userid'];
+    
+    if (!userId) {
+      return res.status(401).json({ isPro: false, message: 'Header userid wajib diisi' });
+    }
+
+    const sub = await Subscription.findOne({ userId });
+
+    if (!sub || sub.status !== 'active') {
+      return res.json({ isPro: false, message: 'Akun Free' });
+    }
+
+    // Jika ada tanggal kadaluarsa dan sudah lewat dari hari ini
+    if (sub.endDate !== null && new Date() > new Date(sub.endDate)) {
+      sub.status = 'expired';
+      await sub.save();
+      return res.json({ isPro: false, message: 'Paket sudah kadaluarsa', data: sub });
+    }
+
+    // Jika status aktif dan belum expired (atau permanen/endDate === null)
+    res.json({ isPro: true, message: 'Akun Pro Aktif', data: sub });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 // ==========================================
 // KONEKSI DATABASE & JALANKAN SERVER
