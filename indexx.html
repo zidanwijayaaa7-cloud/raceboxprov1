@@ -77,6 +77,7 @@
 
     .card-admin h3 { border-left-color: var(--warning); }
     .card-test h3 { border-left-color: var(--success); }
+    .card-status h3 { border-left-color: #a855f7; }
 
     label {
       display: block;
@@ -130,6 +131,9 @@
 
     .btn-admin { background-color: var(--warning); color: #000; }
     .btn-admin:hover { background-color: #d97706; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+
+    .btn-status { background-color: #a855f7; }
+    .btn-status:hover { background-color: #9333ea; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
 
     .console-box {
       background: #000;
@@ -190,6 +194,13 @@
       </select>
 
       <button id="btnAdmin" class="btn-admin" onclick="adminUpdate()">Eksekusi Perubahan</button>
+    </div>
+
+    <!-- 4. CEK STATUS AKUN (PENGHUBUNG REAL-TIME) -->
+    <div class="card card-status">
+      <h3>4. Status Akun (Sinkronisasi Database)</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">Cek apakah akun saat ini sudah berubah jadi Pro atau masih Free.</p>
+      <button id="btnStatus" class="btn-status" onclick="checkUserStatus()">Cek Status Akun Terbaru</button>
     </div>
 
     <!-- HASIL RESPONS -->
@@ -253,7 +264,7 @@
       try {
         const res = await fetch(`${API_URL}/api/fitur-premium`, {
           method: 'GET',
-          headers: { 'userid': userId } // Header ini yang dibaca middleware
+          headers: { 'userid': userId }
         });
         const data = await res.json();
         printLog(data);
@@ -282,6 +293,25 @@
         printLog(`❌ ERROR: Gagal connect ke server.\nPastikan server.js berjalan!\nDetail: ${err.message}`);
       } finally {
         setLoading('btnAdmin', false, "Eksekusi Perubahan");
+      }
+    }
+
+    // 4. Fungsi Cek Status Akun Terbaru (Penghubung Real-time)
+    async function checkUserStatus() {
+      setLoading('btnStatus', true);
+      const userId = document.getElementById('userId').value;
+
+      try {
+        const res = await fetch(`${API_URL}/api/subscription/status`, {
+          method: 'GET',
+          headers: { 'userid': userId }
+        });
+        const data = await res.json();
+        printLog(data);
+      } catch (err) {
+        printLog(`❌ ERROR: Gagal connect ke server.\nPastikan server.js berjalan!\nDetail: ${err.message}`);
+      } finally {
+        setLoading('btnStatus', false, "Cek Status Akun Terbaru");
       }
     }
   </script>
