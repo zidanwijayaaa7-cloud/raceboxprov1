@@ -9,7 +9,7 @@
     <title>RaceBox Pro Ultimate - Telemetry, Dyno & Acoustic RPM V2</title>
     
     <!-- PWA Manifest Inline -->
-    <link rel="manifest" href='data:application/manifest+json,{"name":"RaceBox Pro","short_name":"RaceBox","start_url":".","display":"standalone","background_color":"#0a0a0a","theme_color":"#00ff66","icons":[{"src":"[https://cdn-icons-png.flaticon.com/512/5312/5312433.png](https://cdn-icons-png.flaticon.com/512/5312/5312433.png)","sizes":"512x512","type":"image/png"}]}'>
+    <link rel="manifest" href='data:application/manifest+json,{"name":"RaceBox Pro","short_name":"RaceBox","start_url":".","display":"standalone","background_color":"#0a0a0a","theme_color":"#00ff66","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/5312/5312433.png","sizes":"512x512","type":"image/png"}]}'>
 
     <!-- External Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -110,6 +110,8 @@
         .dev-card { background: linear-gradient(135deg, #0d1a15 0%, #0f1218 100%); border: 1px solid #00ff66aa; border-radius: 12px; padding: 12px; position: relative; overflow: hidden; box-shadow: 0 0 15px rgba(0, 255, 102, 0.15); }
         .dev-card::before { content: "CORE DEV"; position: absolute; right: -12px; top: -8px; background: #00ff6622; color: #00ff66; font-size: 32px; font-weight: 900; opacity: 0.12; font-family: monospace; }
     </style>
+</head>
+<body>
     <div class="sidebar">
         <div class="sidebar-top">
             <div class="brand">RACEBOX<br>PRO</div>
@@ -124,7 +126,7 @@
             <div class="nav-item" onclick="switchTab('account', this)" id="navAccount" style="display:none;">👤<span>Akun</span></div>
             
             <!-- NOMOR WHATSAPP DEV DI NAVIGATION -->
-            <a href="[https://wa.me/6281910461290?text=Halo%20Developer%20RaceBox%20Pro,%20saya%20butuh%20bantuan](https://wa.me/6281910461290?text=Halo%20Developer%20RaceBox%20Pro,%20saya%20butuh%20bantuan)." target="_blank" class="nav-item" style="border-color: #25d366; color: #25d366;">
+            <a href="https://wa.me/6281910461290?text=Halo%20Developer%20RaceBox%20Pro,%20saya%20butuh%20bantuan" target="_blank" class="nav-item" style="border-color: #25d366; color: #25d366;">
                 💬<span>WA Dev</span>
             </a>
         </div>
@@ -584,7 +586,7 @@
                     </div>
                 </div>
                 <!-- TOMBOL CHAT WHATSAPP DI CARD DEV -->
-                <a href="[https://wa.me/6281234567890?text=Halo%20JIDAN%20AUTOTOOLS,%20saya%20pengguna%20RaceBox%20Pro](https://wa.me/6281234567890?text=Halo%20JIDAN%20AUTOTOOLS,%20saya%20pengguna%20RaceBox%20Pro)" target="_blank" class="btn btn-stage" style="display: block; text-align: center; margin-top: 10px; text-decoration: none; background: #123d20; border-color: #25d366; color: #25d366;">
+                <a href="https://wa.me/6281234567890?text=Halo%20JIDAN%20AUTOTOOLS,%20saya%20pengguna%20RaceBox%20Pro" target="_blank" class="btn btn-stage" style="display: block; text-align: center; margin-top: 10px; text-decoration: none; background: #123d20; border-color: #25d366; color: #25d366;">
                     💬 Chat WhatsApp Developer
                 </a>
                 <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #222222; display: flex; justify-content: space-between; font-size: 8.5px; color: #aaa; font-family: monospace;">
@@ -675,7 +677,7 @@
                             <div class="section-title" style="justify-content: center; color: #00ffff;">PEMBAYARAN QRIS / QR CODE</div>
                             <div style="font-size: 10px; color: #ccc; margin-bottom: 6px;">Paket dipilih: <b id="selectedPackageName" style="color:#00ff66;">-</b> (Rp <b id="selectedPackagePrice">-</b>)</div>
                             <div style="background: #fff; padding: 10px; display: inline-block; border-radius: 8px; margin: 6px 0;">
-                                <img src="[https://res.cloudinary.com/dtz0urit6/image/upload/q_auto:best,f_jpg/cloudinary-tools-uploads/avy3wngoq6e2lhzlwpui](https://res.cloudinary.com/dtz0urit6/image/upload/q_auto:best,f_jpg/cloudinary-tools-uploads/avy3wngoq6e2lhzlwpui)" style="width: 130px; height: 130px; display: block;">
+                                <img src="https://res.cloudinary.com/dtz0urit6/image/upload/q_auto:best,f_jpg/cloudinary-tools-uploads/avy3wngoq6e2lhzlwpui" style="width: 130px; height: 130px; display: block;">
                             </div>
                             <div style="font-size: 9px; color: #ffcc00; margin-top: 4px;">Scan QR di atas menggunakan M-Banking / E-Wallet (GoPay, OVO, Dana, BCA, QRIS).</div>
                             <div style="font-size: 8.5px; color: #888; margin-top: 2px;">Pembayaran hanya menggunakan QR saja. Setelah berhasil, klik tombol di bawah untuk konfirmasi ke Developer via WA.</div>
@@ -720,10 +722,10 @@
     </div>
 
     <script>
-        // NOMOR WHATSAPP DEVELOPER (GANTI DENGAN NOMOR WA ASLI ANDA)[cite: 2]
+        // NOMOR WHATSAPP DEVELOPER (GANTI DENGAN NOMOR WA ASLI ANDA)
         const DEV_WA_NUMBER = "6281234567890";
 
-        // Status Pengguna & Autentikasi[cite: 2]
+        // Status Pengguna & Autentikasi
         let currentUser = {
             isLoggedIn: false,
             email: "",
@@ -798,7 +800,7 @@
             let compareLabel = document.getElementById('navCompareLabel');
             let accSelect = document.getElementById('gpsAccuracyLimit');
 
-            // Update gambar gembok di bagian menu sidebar & opsi akurasi[cite: 2]
+            // Update gambar gembok di bagian menu sidebar & opsi akurasi
             if (currentUser.isPro) {
                 if (dynoLabel) dynoLabel.innerText = "Dyno";
                 if (toolsLabel) toolsLabel.innerText = "Tools";
@@ -861,23 +863,23 @@
             let packagePrice = document.getElementById('selectedPackagePrice').innerText;
             let message = `Halo Developer RaceBox Pro,\n\nSaya ingin mengonfirmasi pembayaran akun Pro:\n- Nama: ${currentUser.name}\n- Email: ${currentUser.email}\n- Paket: ${packageName} (Rp ${packagePrice})\n\nMohon untuk diverifikasi dan Diaktifkan. Terima kasih!`;
             
-            window.open(`[https://wa.me/$](https://wa.me/$){DEV_WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+            window.open(`https://wa.me/${DEV_WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Fungsi Menampilkan Pop-Up Paywall[cite: 2]
+        // Fungsi Menampilkan Pop-Up Paywall
         function showPaywallModal(featureName) {
             alert(`🔒 FITUR PRO TERKUNCI!\n\nFitur "${featureName}" hanya tersedia untuk member RaceBox Pro.\nSilakan login dan upgrade akun Anda (1 Bulan 25K, 1 Tahun 149K, Permanen 299K) via menu Akun!`);
             switchTab('account', document.getElementById('navAccount'));
         }
 
-        // Service Worker PWA[cite: 2]
+        // Service Worker PWA
         if ('serviceWorker' in navigator) {
             const swCode = `self.addEventListener('fetch', function(e) { e.respondWith(fetch(e.request).catch(function() { return caches.match(e.request); })); });`;
             const blob = new Blob([swCode], { type: 'application/javascript' });
             navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
         }
 
-        // Global Variables[cite: 2]
+        // Global Variables
         let currentLat = null, currentLon = null, currentSpeedKmh = 0, gpsAccuracy = 999;
         let currentGForce = 0, peakGForce = 0;
         let dragArmed = false, dragRunning = false, dragStartTime = 0, greenLightTime = 0, reactionTime = null;
@@ -887,10 +889,10 @@
         let speedChartInstance = null, compareChartInstance = null, dynoChartInstance = null;
         let wakeLockObj = null;
 
-        // Acoustic RPM Variables[cite: 2]
+        // Acoustic RPM Variables
         let audioCtx = null, analyser = null, micStream = null, isRpmRunning = false;
 
-        // Data Cuaca Global[cite: 2]
+        // Data Cuaca Global
         let currentWeather = { temp: 30, humidity: 70, pressure: 1010, da: 100, hint: 'Belum ada data' };
         let weatherFetched = false;
 
@@ -909,7 +911,7 @@
             if (document.getElementById('keepAwakeToggle').checked) requestWakeLock();
         });
 
-        // --- TAB SWITCHING LOGIC ---[cite: 2]
+        // --- TAB SWITCHING LOGIC ---
         function switchTab(tabId, el) {
             const proTabs = ['dyno', 'tools', 'compare'];
 
@@ -952,7 +954,7 @@
             if (toolId !== 'rpm' && isRpmRunning) stopRpmMeter();
         }
 
-        // --- ACOUSTIC RPM METER (MIC FFT ENGINE) ---[cite: 2]
+        // --- ACOUSTIC RPM METER (MIC FFT ENGINE) ---
         async function toggleRpmMeter() {
             if (isRpmRunning) {
                 stopRpmMeter();
@@ -1037,7 +1039,7 @@
             requestAnimationFrame(updateRpmLoop);
         }
 
-        // --- HARDWARE SENSORS ---[cite: 2]
+        // --- HARDWARE SENSORS ---
         function initSensors() {
             if (window.DeviceMotionEvent) {
                 window.addEventListener('devicemotion', (e) => {
@@ -1065,7 +1067,7 @@
             }
         }
 
-        // --- GEOLOCATION & WEATHER INTEGRATION ---[cite: 2]
+        // --- GEOLOCATION & WEATHER INTEGRATION ---
         if ("geolocation" in navigator) {
             navigator.geolocation.watchPosition(pos => {
                 currentLat = pos.coords.latitude;
@@ -1116,7 +1118,7 @@
 
         async function fetchWeatherData(lat, lon) {
             try {
-                let res = await fetch(`[https://api.open-meteo.com/v1/forecast?latitude=$](https://api.open-meteo.com/v1/forecast?latitude=$){lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,surface_pressure`);
+                let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,surface_pressure`);
                 let data = await res.json();
                 
                 if (data && data.current) {
@@ -1156,7 +1158,7 @@
             return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
         }
 
-        // --- DRAG STAGING & TIMING ---[cite: 2]
+        // --- DRAG STAGING & TIMING ---
         function armSystemWithTree() {
             let limit = parseInt(document.getElementById('gpsAccuracyLimit').value);
             let requireGood = document.getElementById('requireGoodGpsToggle').checked;
@@ -1235,7 +1237,7 @@
             document.getElementById('chartPanel').style.display = 'none';
         }
 
-        // --- VIRTUAL DYNO ALGORITHM ---[cite: 2]
+        // --- VIRTUAL DYNO ALGORITHM ---
         function runDynoAnalysis() {
             let log = speedDataLog;
             if (!log || log.length < 3) {
@@ -1379,7 +1381,7 @@
             }
         }
 
-        // --- MECHANIC TOOLS CALCULATORS ---[cite: 2]
+        // --- MECHANIC TOOLS CALCULATORS ---
         function calcJetting() {
             let da = parseFloat(document.getElementById('jettingDA').value) || 0;
             let currentMJ = parseFloat(document.getElementById('jettingCurrentMJ').value) || 135;
@@ -1488,7 +1490,7 @@
             }
         }
 
-        // --- TIME SLIP & LOGBOOK FUNCTIONS ---[cite: 2]
+        // --- TIME SLIP & LOGBOOK FUNCTIONS ---
         function showTimeSlip() {
             let weight = parseFloat(document.getElementById('totalWeight').value) || 130;
             let targetDist = document.getElementById('targetDistance').value;
@@ -1753,5 +1755,5 @@
             }
         }
     </script>
-</head>
+</body>
 </html>
