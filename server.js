@@ -44,6 +44,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Route untuk Dashboard Admin (indexx)
+app.get('/admin', (req, res) => {
+    res.sendFile(__dirname, 'indexx.html'); // Sesuaikan dengan lokasi file indexx Anda[cite: 1]
+});
+
 
 // ==========================================
 // 2. LOGIKA PILIH PAKET (USER)
