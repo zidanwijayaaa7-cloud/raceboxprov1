@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 
 // Route untuk Dashboard Admin (indexx)
 app.get('/admin', (req, res) => {
-    res.sendFile(__dirname, 'indexx.html'); // Sesuaikan dengan lokasi file indexx Anda[cite: 1]
+    res.sendFile(__dirname + '/indexx.html'); // Sesuaikan dengan lokasi file indexx Anda[cite: 1]
 });
 
 
