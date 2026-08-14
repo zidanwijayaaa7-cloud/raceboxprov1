@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceboxPro - Subscription Dashboard</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.5);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --border: #334155;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .header span {
+      color: var(--primary);
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 25px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: #475569;
+    }
+
+    h3 {
+      margin-top: 0;
+      color: #e2e8f0;
+      font-size: 1.2rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .card-admin h3 { border-left-color: var(--warning); }
+    .card-test h3 { border-left-color: var(--success); }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      background-color: #0f172a;
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      background-color: var(--primary);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    button:hover { background-color: #2563eb; box-shadow: 0 0 15px var(--primary-glow); }
+    button:disabled { background-color: #475569; cursor: not-allowed; box-shadow: none; }
+
+    .btn-test { background-color: var(--success); }
+    .btn-test:hover { background-color: #059669; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+
+    .btn-admin { background-color: var(--warning); color: #000; }
+    .btn-admin:hover { background-color: #d97706; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+
+    .console-box {
+      background: #000;
+      color: #00ff00;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      border: 1px solid #333;
+      min-height: 80px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h2>🏎️ Racebox<span>Pro</span></h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Admin & Subscription Dashboard</p>
+    </div>
+
+    <!-- 1. PENGGUNA BELI PAKET -->
+    <div class="card">
+      <h3>1. Simulasi Beli Paket (User)</h3>
+      <label>User ID</label>
+      <input type="text" id="userId" value="zidan123" placeholder="Masukkan ID User">
+
+      <label>Durasi Paket</label>
+      <select id="packageChoice">
+        <option value="1_month">1 Bulan</option>
+        <option value="3_months">3 Bulan</option>
+        <option value="1_year">1 Tahun</option>
+        <option value="permanent">Permanen (Lifetime)</option>
+      </select>
+
+      <button id="btnBuy" onclick="buyPackage()">Aktifkan Paket</button>
+    </div>
+
+    <!-- 2. TES HAK AKSES -->
+    <div class="card card-test">
+      <h3>2. Uji Akses Middleware</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">Mengecek apakah User ID di atas punya izin akses.</p>
+      <button id="btnTest" class="btn-test" onclick="checkAccess()">Coba Akses Fitur Premium</button>
+    </div>
+
+    <!-- 3. DASHBOARD ADMIN MANUAL -->
+    <div class="card card-admin">
+      <h3>3. Manual Override (Admin)</h3>
+      <label>Target User ID</label>
+      <input type="text" id="adminUserId" value="zidan123">
+
+      <label>Aksi</label>
+      <select id="adminAction">
+        <option value="SET_PERMANENT">Ubah ke Permanen</option>
+        <option value="ADD_DAYS">Tambah Durasi (+30 Hari)</option>
+      </select>
+
+      <button id="btnAdmin" class="btn-admin" onclick="adminUpdate()">Eksekusi Perubahan</button>
+    </div>
+
+    <!-- HASIL RESPONS -->
+    <div class="card">
+      <h3>Server Response Log</h3>
+      <div id="output" class="console-box">Menunggu perintah...</div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = '';
+
+    // Fungsi bantuan untuk nampilin loading di tombol
+    function setLoading(btnId, isProcessing, originalText) {
+      const btn = document.getElementById(btnId);
+      if (isProcessing) {
+        btn.disabled = true;
+        btn.innerText = "Memproses... ⏳";
+      } else {
+        btn.disabled = false;
+        btn.innerText = originalText;
+      }
+    }
+
+    // Fungsi print log biar kaya console asli
+    function printLog(data) {
+      const output = document.getElementById('output');
+      if (typeof data === 'object') {
+        output.innerText = JSON.stringify(data, null, 2);
+      } else {
+        output.innerText = data;
+      }
+    }
+
+    // 1. Fungsi Beli Paket
+    async function buyPackage() {
+      setLoading('btnBuy', true);
+      const userId = document.getElementById('userId').value;
+      const packageChoice = document.getElementById('packageChoice').value;
+
+      try {
+        const res = await fetch(`${API_URL}/api/subscription/buy`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId, packageChoice })
+        });
+        const data = await res.json();
+        printLog(data);
+      } catch (err) {
+        printLog(`❌ ERROR: Gagal connect ke server.\nPastikan server.js berjalan (node server.js)!\nDetail: ${err.message}`);
+      } finally {
+        setLoading('btnBuy', false, "Aktifkan Paket");
+      }
+    }
+
+    // 2. Fungsi Cek Akses
+    async function checkAccess() {
+      setLoading('btnTest', true);
+      const userId = document.getElementById('userId').value;
+
+      try {
+        const res = await fetch(`${API_URL}/api/fitur-premium`, {
+          method: 'GET',
+          headers: { 'userid': userId } // Header ini yang dibaca middleware
+        });
+        const data = await res.json();
+        printLog(data);
+      } catch (err) {
+        printLog(`❌ ERROR: Gagal connect ke server.\nPastikan server.js berjalan!\nDetail: ${err.message}`);
+      } finally {
+        setLoading('btnTest', false, "Coba Akses Fitur Premium");
+      }
+    }
+
+    // 3. Fungsi Admin Update
+    async function adminUpdate() {
+      setLoading('btnAdmin', true);
+      const targetUserId = document.getElementById('adminUserId').value;
+      const actionType = document.getElementById('adminAction').value;
+
+      try {
+        const res = await fetch(`${API_URL}/api/admin/update-subscription`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ targetUserId, actionType, daysToAdd: 30 })
+        });
+        const data = await res.json();
+        printLog(data);
+      } catch (err) {
+        printLog(`❌ ERROR: Gagal connect ke server.\nPastikan server.js berjalan!\nDetail: ${err.message}`);
+      } finally {
+        setLoading('btnAdmin', false, "Eksekusi Perubahan");
+      }
+    }
+  </script>
+</body>
+</html>
